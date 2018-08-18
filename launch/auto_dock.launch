@@ -1,0 +1,5 @@
+<launch>
+  <node name="auto_dock" pkg="fetch_auto_dock" type="auto_dock" output="screen" />
+  <node name="dock_on_button" pkg="fetch_auto_dock" type="dock_on_button.py" />
+  <node name="undock_on_button" pkg="fetch_auto_dock" type="undock_on_button.py" />
+</launch>
