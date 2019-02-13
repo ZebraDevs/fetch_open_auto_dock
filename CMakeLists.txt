@@ -9,7 +9,6 @@ find_package(catkin REQUIRED
   COMPONENTS
     actionlib
     angles
-    cmake_modules
     fetch_auto_dock_msgs
     fetch_driver_msgs
     geometry_msgs
@@ -20,7 +19,7 @@ find_package(catkin REQUIRED
     std_msgs
     tf
 )
-find_package(Eigen REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -41,7 +40,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
 )
 
 add_executable(auto_dock
@@ -56,9 +55,7 @@ target_link_libraries(auto_dock
   ${catkin_LIBRARIES}
 )
 add_dependencies(auto_dock
-  fetch_auto_dock_gencpp
-  fetch_msgs_gencpp
-  power_msgs_gencpp
+  ${catkin_EXPORTED_TARGETS}
 )
 
 if (CATKIN_ENABLE_TESTING)
