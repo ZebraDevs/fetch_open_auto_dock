@@ -8,8 +8,12 @@
 
   <author>Michael Ferguson</author>
   <author>Griswald Brooks</author>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="narora@fetchrobotics.com">Niharika Arora</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
   <maintainer email="rtoris@fetchrobotics.com">Russell Toris</maintainer>
-  <maintainer email="amoriarty@fetchrobotics.com">Alex Moriarty</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
 
   <license>LGPLv3</license>
 
