@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ 
 This script broadcasts a tf frame called odom_rot that spins about the z axis
 at a slow rate but also allows its yaw to be set at the command line.
@@ -22,7 +22,7 @@ class OdomTransform(object):
 
 def updateTransform(odom_transform):
     while not rospy.is_shutdown():
-        new_yaw = raw_input("Enter new yaw[" + str(odom_transform.yaw) + "]: ")
+        new_yaw = input("Enter new yaw[" + str(odom_transform.yaw) + "]: ")
         
         try:
             odom_transform.yaw = float(new_yaw)
