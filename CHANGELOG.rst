@@ -2,8 +2,8 @@
 Changelog for package fetch_open_auto_dock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.3 (2021-02-21)
+------------------
 * First Noetic release of auto dock
 * Minor python3 updates to scripts (`#5 <https://github.com/fetchrobotics/fetch_open_auto_dock/issues/5>`_)
 * Contributors: Eric Relson
