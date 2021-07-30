@@ -129,11 +129,16 @@ void AutoDocking::dockCallback(const fetch_auto_dock_msgs::DockGoalConstPtr& goa
     backup_limit_ *= 0.9;
 
     // Preorient the robot towards the dock.
+    ros::Time time_timeout = ros::Time::now() + ros::Duration(10);
     while (!controller_.backup(0.0, -dock_yaw) && 
            continueDocking(result)             &&
            ros::ok()
            )
     {
+      if ( ros::Time::now() > time_timeout ) {
+        ROS_ERROR_STREAM_NAMED("auto_dock", "preorientation timeout");
+        cancel_docking_ = true;
+      }
       r.sleep();  // Sleep the rate control object.
     }
   }
