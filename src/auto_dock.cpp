@@ -44,6 +44,7 @@ AutoDocking::AutoDocking() :
   pnh.param("num_of_retries",                    NUM_OF_RETRIES_,                    5);
   pnh.param("dock_connector_clearance_distance", DOCK_CONNECTOR_CLEARANCE_DISTANCE_, 0.2);
   pnh.param("docked_distance_threshold",         DOCKED_DISTANCE_THRESHOLD_,         0.34);
+  pnh.param("duration_timeout_preorientation",   duration_timeout_preorientation_,   10.0);
 
   // Subscribe to robot state
   state_ = nh_.subscribe<fetch_driver_msgs::RobotState>("robot_state",
@@ -129,11 +130,16 @@ void AutoDocking::dockCallback(const fetch_auto_dock_msgs::DockGoalConstPtr& goa
     backup_limit_ *= 0.9;
 
     // Preorient the robot towards the dock.
+    ros::Time time_timeout = ros::Time::now() + ros::Duration(duration_timeout_preorientation_);
     while (!controller_.backup(0.0, -dock_yaw) && 
            continueDocking(result)             &&
            ros::ok()
            )
     {
+      if ( ros::Time::now() > time_timeout ) {
+        ROS_ERROR_STREAM_NAMED("auto_dock", "preorientation timeout");
+        cancel_docking_ = true;
+      }
       r.sleep();  // Sleep the rate control object.
     }
   }
