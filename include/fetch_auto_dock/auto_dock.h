@@ -163,6 +163,7 @@ private:
   ros::Time deadline_docking_;       // Time when the docking times out.
   ros::Time deadline_not_charging_;  // Time when robot gives up on the charge state and retries docking.
   bool charging_timeout_set_;        // Flag to indicate if the deadline_not_charging has been set.
+  double duration_timeout_undock_;   // Duration for undock action timeout
 };
 
 #endif  // FETCH_AUTO_DOCK_H

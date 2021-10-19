@@ -44,6 +44,7 @@ AutoDocking::AutoDocking() :
   pnh.param("num_of_retries",                    NUM_OF_RETRIES_,                    5);
   pnh.param("dock_connector_clearance_distance", DOCK_CONNECTOR_CLEARANCE_DISTANCE_, 0.2);
   pnh.param("docked_distance_threshold",         DOCKED_DISTANCE_THRESHOLD_,         0.34);
+  pnh.param("duration_timeout_undock",           duration_timeout_undock_,           5.0);
 
   // Subscribe to robot state
   state_ = nh_.subscribe<fetch_driver_msgs::RobotState>("robot_state",
@@ -429,7 +430,7 @@ void AutoDocking::undockCallback(const fetch_auto_dock_msgs::UndockGoalConstPtr&
   controller_.stop();
 
   // Timeout for undocking
-  ros::Time timeout = ros::Time::now() + ros::Duration(5.0);
+  ros::Time timeout = ros::Time::now() + ros::Duration(duration_timeout_undock_);
 
   // Control
   ros::Rate r(50.0);
